@@ -8,8 +8,8 @@ steps:
 - task: Gradle@2
   displayName: 'gradlew assembleDebug'
   inputs:
-    gradleWrapperFile: 'Geofence/SourceCode -Android/gradlew'
-    workingDirectory: 'Geofence/SourceCode -Android'
+    gradleWrapperFile: 'Geofence/ -Android/gradlew'
+    workingDirectory: 'Geofence/ -Android'
     tasks: assembleDebug
     publishJUnitResults: false
     checkStyleRunAnalysis: true
@@ -19,6 +19,6 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactStagingDirectory)'
   inputs:
-    SourceFolder: 'Geofence/SourceCode -Android'
+    SourceFolder: 'Geofence/ -Android'
     Contents: '**/*.apk'
     TargetFolder: '$(build.artifactStagingDirectory)'
