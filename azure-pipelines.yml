@@ -1,0 +1,29 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Gradle@2
+  displayName: 'gradlew assembleDebug'
+  inputs:
+    gradleWrapperFile: 'Geofence/SourceCode -Android/gradlew'
+    workingDirectory: 'Geofence/SourceCode -Android'
+    tasks: assembleDebug
+    publishJUnitResults: false
+    checkStyleRunAnalysis: true
+    findBugsRunAnalysis: true
+    pmdRunAnalysis: true
+
+- task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@18
+  displayName: 'WhiteSource Bolt'
+  inputs:
+    cwd: 'Geofence/SourceCode -Android'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactStagingDirectory)'
+  inputs:
+    SourceFolder: 'Geofence/SourceCode -Android'
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactStagingDirectory)'
