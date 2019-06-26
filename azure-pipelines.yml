@@ -16,11 +16,6 @@ steps:
     findBugsRunAnalysis: true
     pmdRunAnalysis: true
 
-- task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@18
-  displayName: 'WhiteSource Bolt'
-  inputs:
-    cwd: 'Geofence/SourceCode -Android'
-
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactStagingDirectory)'
   inputs:
